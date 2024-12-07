@@ -21,7 +21,6 @@ Este é um sistema completo para aluguel de carros, desenvolvido com as seguinte
 ### Pré-requisitos
 - **Node.js**: v16 ou superior
 - **MySQL**: Banco de dados configurado
-- **Docker** (opcional): Para conteinerização
 
 ### 1. Configuração do Backend
 
