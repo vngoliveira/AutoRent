@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User, Reservation, Car } = require("../models");
+const { User, Reservation, Car, Admin } = require("../models");
 
 exports.register = async (req, res) => {
   try {
@@ -79,7 +79,15 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ where: { email } });
+    let user = await Admin.findOne({ where: { email } });
+    let role = "admin";
+
+    console.log(user)
+
+    if (!user) {
+      user = await User.findOne({ where: { email } });
+      role = "user";
+    }
 
     if (!user) {
       return res.status(404).json({ message: "Usuário não encontrado" });
@@ -96,7 +104,7 @@ exports.login = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.json(user.id);
+    res.json({id: user.id, role});
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Erro ao realizar o login" });

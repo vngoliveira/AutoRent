@@ -22,6 +22,8 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .car-card {
@@ -30,6 +32,7 @@ h1 {
   border-radius: 15px;
   padding: 1.5rem;
   max-width: 280px;
+  width: 100%;
   text-align: left;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -50,14 +53,21 @@ h1 {
 
 .car-card p {
   margin: 0.5rem 0;
-  color: #777;
+  color: #555;
   font-size: 1rem;
 }
 
+.car-card .actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
 .car-card button {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
   background: #38ef7d;
   color: #fff;
   border: none;
@@ -77,6 +87,24 @@ h1 {
   cursor: not-allowed;
 }
 
+/* Botões específicos para o AdminDashboard */
+.car-card .btn-edit {
+  background: #4c3def;
+}
+
+.car-card .btn-edit:hover {
+  background: #4c3def;
+}
+
+.car-card .btn-delete {
+  background: #e57373;
+}
+
+.car-card .btn-delete:hover {
+  background: #ef5350;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .car-list {
     gap: 1rem;

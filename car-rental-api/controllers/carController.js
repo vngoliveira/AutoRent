@@ -34,3 +34,36 @@ exports.getCarById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.deleteCar = async (req, res) => {
+  try {
+    const carId = req.params.id;
+
+    const car = await Car.findByPk(carId);
+    if (!car) {
+      return res.status(404).json({ error: "Car not found" });
+    }
+
+    await car.destroy();
+    res.status(200).json({ message: "Car deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.updateCar = async (req, res) => {
+  try {
+    const carId = req.params.id;
+    const { model, category, dailyRate, availability } = req.body;
+
+    const car = await Car.findByPk(carId);
+    if (!car) {
+      return res.status(404).json({ error: "Car not found" });
+    }
+
+    await car.update({ model, category, dailyRate, availability });
+    res.status(200).json(car);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

@@ -8,7 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setUserId } = useUser();
+  const { setUser } = useUser();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,10 +22,16 @@ const Login = () => {
 
       const data = await response.json();
 
+      console.log(data)
+
       if (response.ok) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-        setUserId(data);
-        navigate("/dashboard");
+        setUser({ userId: data.id, role: data.role }); 
+        localStorage.setItem("user", JSON.stringify({ userId: data.userId, role: data.role }));
+        if (data.role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/dashboard");
+        }
       } else {
         alert("Erro no login: " + data.message);
       }

@@ -5,13 +5,15 @@ import { useUser } from "../UserContext";
 
 const Reservations = () => {
   const [reservations, setReservations] = useState([]);
-  const { userId } = useUser();
+  const { user } = useUser();
+
+  console.log(user)
 
   useEffect(() => {
     const fetchReservations = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/users/${userId}/reservations`
+          `http://localhost:3000/api/users/${user.userId}/reservations`
         );
         const data = await response.json();
 
@@ -36,7 +38,7 @@ const Reservations = () => {
     };
 
     fetchReservations();
-  }, [userId]);
+  }, [user]);
 
   const handleCancel = async (reservationId) => {
     try {
@@ -47,8 +49,6 @@ const Reservations = () => {
         }
       );
       const data = await response.json();
-
-      console.log(data);
 
       if (response.ok) {
         alert("Reservation cancelled successfully!");
@@ -66,8 +66,6 @@ const Reservations = () => {
       console.error("Error cancelling reservation:", error);
     }
   };
-
-  console.log(reservations);
 
   return (
     <div className="reservations-container">

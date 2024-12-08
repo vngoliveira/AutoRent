@@ -11,6 +11,10 @@ import { UserProvider } from "./UserContext";
 import Reservations from './pages/Reservations';
 import EditProfile from './pages/EditProfile';
 import ReservationDetails from './pages/ReservationDetails';
+import AdminCarRegistration from './pages/AdminCarRegistration';
+import AdminReservations from './pages/AdminReservations';
+import AdminDashboard from './pages/AdminDashboard';
+import EditCar from './pages/EditCar';
 
 const App = () => {
   return (
@@ -34,6 +38,38 @@ const App = () => {
           element={
             <AuthGuard>
               <Reservation />
+            </AuthGuard>
+          }
+        />
+        <Route
+              path="/admin-dashboard"
+              element={
+                <AuthGuard requiredRole="admin">
+                 <AdminDashboard/>
+                </AuthGuard>
+              }
+        />
+        <Route
+              path="/edit-car/:id"
+              element={
+                <AuthGuard requiredRole="admin">
+                 <EditCar/>
+                </AuthGuard>
+              }
+        />
+         <Route
+              path="/cars/new"
+              element={
+                <AuthGuard requiredRole="admin">
+                 <AdminCarRegistration/>
+                </AuthGuard>
+              }
+        />
+        <Route
+          path="/admin/reservations"
+          element={
+            <AuthGuard requiredRole="admin">
+              <AdminReservations />
             </AuthGuard>
           }
         />

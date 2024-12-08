@@ -3,7 +3,7 @@ import { useUser } from "../UserContext";
 import "../styles/EditProfile.css";
 
 const EditProfile = () => {
-  const { userId } = useUser();
+  const { user } = useUser();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -26,7 +26,7 @@ const EditProfile = () => {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/users/${userId}`
+          `http://localhost:3000/api/users/${user.userId}`
         );
         const data = await response.json();
         setUserData({
@@ -39,7 +39,7 @@ const EditProfile = () => {
     };
 
     fetchUserData();
-  }, [userId]);
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,7 +54,7 @@ const EditProfile = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/${userId}`,
+        `http://localhost:3000/api/users/${user.userId}`,
         {
           method: "PUT",
           headers: {
