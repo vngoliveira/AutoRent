@@ -13,6 +13,7 @@ Este é um sistema completo para aluguel de carros, desenvolvido com as seguinte
 - **Gestão de Reservas**: Criar, listar, confirmar e cancelar reservas.
 - **Gerenciamento de Carros**: Exibir carros disponíveis para aluguel.
 - **Cálculo Automático de Preços**: Baseado na quantidade de dias da reserva.
+- **Interface de Administração de Carros**: Uma interface amigável para o gerenciamento de carros, incluindo edição e criação de novos carros.
 
 ---
 
@@ -38,6 +39,8 @@ Este é um sistema completo para aluguel de carros, desenvolvido com as seguinte
    DB_USER=root
    DB_PASSWORD=senha
    DB_NAME=car_rental
+   DB_PORT=3306
+   DB_DIALECT=mysql
 5. Execute as migrações do banco de dados:
    ```bash
    npx sequelize db:migrate
@@ -59,6 +62,8 @@ Este é um sistema completo para aluguel de carros, desenvolvido com as seguinte
 - GET /api/cars: Lista todos os carros.
 - GET /api/cars/:id: Detalhes de um carro.
 - POST /api/cars: Criação de um carro (apenas para admin).
+- PUT /api/cars/:id: Atualizar um carro (apenas para admin).
+- DELETE /api/cars/:id: Deletar um carro (apenas para admin).
 #### Reservas
 - POST /api/reservations: Criar uma reserva.
 - GET /api/reservations/:id: Detalhes de uma reserva.
