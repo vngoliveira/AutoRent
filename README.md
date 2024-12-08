@@ -5,7 +5,7 @@ Este é um sistema completo para aluguel de carros, desenvolvido com as seguinte
 - **Backend:** Node.js, Express.js, Sequelize, MySQL
 - **Frontend:** React, React Router
 - **Banco de Dados:** MySQL
-- **Outras ferramentas:** Docker, Postman para testes de API
+- **Outras ferramentas:** Postman para testes de API
 
 ## Funcionalidades
 
